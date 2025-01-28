@@ -24,7 +24,6 @@ The logger supports five different log levels to help categorize log messages:
   - **Warning**: Yellow
   - **Error**: Red
   - **Fatal**: Dark Red
-- **Cross-Platform**: Compatible with both Windows and Linux.
 
 ## Installation
 
@@ -49,12 +48,6 @@ If you’re building a shared library (`DLL`), ensure that the logger’s DLL an
     - For example, in Visual Studio, go to the **Project Properties** > **Linker** > **Input** > **Additional Dependencies** and add `logger.lib`.
 3. **Runtime DLL**:
     - Ensure `logger.dll` is available at runtime (usually in the same directory as your executable).
-
-#### For Linux
-
-1. Compile the logger as a shared object (`.so`).
-2. Link it with your application using `-l` flag.
-    - Example: `gcc -o myapp myapp.c -llogger -L/path/to/logger/lib`
 
 ### 3. Include Logger Header
 
