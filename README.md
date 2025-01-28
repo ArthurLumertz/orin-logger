@@ -55,7 +55,7 @@ If you’re building a shared library (`DLL`), ensure that the logger’s DLL an
 In your source files, include the logger header file:
 
 ```c
-#include <logger/logger.h>#include <logger/logger.h>
+#include <logger/logger.h>
 
 int main() {
     // Log messages with different severity levels
