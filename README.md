@@ -18,6 +18,12 @@ The logger supports five different log levels to help categorize log messages:
 - **Formatted Logging**: Supports `printf`-style formatted logging.
 - **Log Retrieval**: Retrieves all logs as a concatenated string.
 - **Persistent Logs**: Allows logs to be written to a file.
+- **Custom Log Colors**: Each log level is displayed with a unique color for better visibility and differentiation.
+  - **Info**: White
+  - **Debug**: Light Gray
+  - **Warning**: Yellow
+  - **Error**: Red
+  - **Fatal**: Dark Red
 - **Cross-Platform**: Compatible with both Windows and Linux.
 
 ## Installation
