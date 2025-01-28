@@ -29,13 +29,16 @@ typedef enum {
 
 typedef const char* LOGGER_char;
 
-LOGGER_API void LOGGER_log(const LogLevel level, const char* message);
+LOGGER_API void LOGGER_log(const LogLevel level, LOGGER_char message, ...);
 
-LOGGER_API void LOGGER_info(LOGGER_char message);
-LOGGER_API void LOGGER_debug(LOGGER_char message);
-LOGGER_API void LOGGER_warning(LOGGER_char message);
-LOGGER_API void LOGGER_error(LOGGER_char message);
-LOGGER_API void LOGGER_fatal(LOGGER_char message);
+LOGGER_API void LOGGER_info(LOGGER_char message, ...);
+LOGGER_API void LOGGER_debug(LOGGER_char message, ...);
+LOGGER_API void LOGGER_warning(LOGGER_char message, ...);
+LOGGER_API void LOGGER_error(LOGGER_char message, ...);
+LOGGER_API void LOGGER_fatal(LOGGER_char message, ...);
+
+LOGGER_API const char* LOGGER_logs(void);
+LOGGER_API void LOGGER_write(const char* filepath);
 
 #ifdef __cplusplus
 }
