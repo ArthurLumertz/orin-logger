@@ -48,7 +48,7 @@ In your source files, include the logger header file:
 
 int main() {
     /* Sets the log level, meaning anything below WARNING is not printed.
-       The full list (in order=low->high):
+       The full list (order=low->high):
        (
         DEBUG,
         WARNING,
