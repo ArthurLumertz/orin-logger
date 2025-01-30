@@ -1,47 +1,32 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#pragma once
 
-#ifdef _WIN32
-	#ifdef LOGGER_EXPORTS
-		#define LOGGER_API __declspec(dllexport)
-	#else
-		#define LOGGER_API __declspec(dllimport)
-	#endif
-#else
-	#ifdef LOGGER_EXPORTS
-		#define LOGGER_API __attribute__((visibility("default")))
-	#else
-		#define LOGGER_API
-	#endif
-#endif
+#include <string>
+#include <vector>
+#include <ostream>
+#include <istream>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+namespace logger {
 
-typedef enum {
-	LOG_INFO,
-	LOG_WARNING,
-	LOG_ERROR,
-	LOG_DEBUG,
-	LOG_FATAL,
-} LogLevel;
+	typedef enum {
+		DEBUG,
+		WARNING,
+		INFO,
+		ERROR,
+		FATAL,
+	} Level;
 
-typedef const char* LOGGER_char;
+	void setLogLevel(const Level level);
+	void usePrimaryThread(bool usePrimary);
 
-LOGGER_API void LOGGER_log(const LogLevel level, LOGGER_char message, ...);
+	void info(const std::string& message);
+	void debug(const std::string& message);
+	void warn(const std::string& message);
+	void error(const std::string& message);
+	void fatal(const std::string& message);
 
-LOGGER_API void LOGGER_info(LOGGER_char message, ...);
-LOGGER_API void LOGGER_debug(LOGGER_char message, ...);
-LOGGER_API void LOGGER_warning(LOGGER_char message, ...);
-LOGGER_API void LOGGER_error(LOGGER_char message, ...);
-LOGGER_API void LOGGER_fatal(LOGGER_char message, ...);
+	const std::vector<std::string> getFullLog();
+	
+	void writeLog(std::ostream& outputStream);
+	void readLog(std::istream& inputStream);
 
-LOGGER_API const char* LOGGER_logs(void);
-LOGGER_API void LOGGER_write(const char* filepath);
-
-#ifdef __cplusplus
 }
-#endif
-
-#endif
