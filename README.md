@@ -15,8 +15,7 @@ The logger supports five different log levels to help categorize log messages:
 ## Features
 
 - **Multiple Log Levels**: Logs messages with different severity levels: Debug, Info, Warning, Error, Fatal.
-- **Formatted Logging**: Supports `printf`-style formatted logging.
-- **Log Retrieval**: Retrieves all logs as a concatenated string.
+- **Log Retrieval**: Retrieves all logs as a vector
 - **Persistent Logs**: Allows logs to be written to a file.
 - **Custom Log Colors**: Each log level is displayed with a unique color for better visibility and differentiation.
   - **Info**: White
@@ -33,21 +32,8 @@ To use the **Logger** utility, follow these steps:
 
 Download the logger source files and add them to your project. Ensure the following files are available in your project:
 
-- `logger.c` – The main logger implementation file.
+- `logger.cpp` – The main logger implementation file.
 - `logger.h` – The header file for the logger functions.
-
-### 2. Link Required DLL and LIB Files
-
-If you’re building a shared library (`DLL`), ensure that the logger’s DLL and the corresponding `.LIB` file are linked correctly.
-
-#### For Windows
-
-1. **DLL and LIB Files**: If the logger is compiled into a DLL, ensure that the `logger.dll` and `logger.lib` files are linked to your project.
-2. **Linking the LIB File**:
-    - Add the path to `logger.lib` in your project's linker settings.
-    - For example, in Visual Studio, go to the **Project Properties** > **Linker** > **Input** > **Additional Dependencies** and add `logger.lib`.
-3. **Runtime DLL**:
-    - Ensure `logger.dll` is available at runtime (usually in the same directory as your executable).
 
 ### 3. Include Logger Header
 
@@ -55,23 +41,57 @@ In your source files, include the logger header file:
 
 ```c
 #include <logger/logger.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
 
 int main() {
-    // Log messages with different severity levels
-    LOGGER_debug("This is a debug message");
-    LOGGER_info("This is an informational message");
-    LOGGER_warning("This is a warning message");
-    LOGGER_error("This is an error message");
-    LOGGER_fatal("This is a fatal error message");
+    /* Sets the log level, meaning anything below WARNING is not printed.
+       The full list (in order):
+       (
+        DEBUG,
+        WARNING,
+        ERROR,
+        FATAL,
+        INFO
+       )
+    /*
+    logger::setLogLevel(logger::WARNING);
 
-    // Log a formatted message
-    LOGGER_info("The current count is: %i", 42);
+    // Makes the logger use the primary thread (default=true)
+    // Highly recommended to use main thread
+    logger::usePrimaryThread(true);
+
+    // Log messages with different severity levels
+    logger::debug("This is a debug message!");
+    logger::info("This is a info message!");
+    logger::warn("This is a warning message!");
+    logger::error("This is a warning message!");
+    logger::fatal("This is a fatal message!");
 
     // Get all logs as a concatenated string
-    const char* allLogs = LOGGER_logs();
+    std::vector<std::string> fullLog = logger::getFullLog();
 
-    // Write all logs to a file
-    LOGGER_write("logs.txt");
+    // Preparing file
+    std::ofstream file("example.log");
+    if (!file.is_open()) {
+      logger::fatal("Failed to open file!");
+      return -1;
+    }
+
+    // Write all of the logs to the output stream
+    logger::writeLog(file);
+
+    // Preparing file
+    std::ifstream inputFile("example.log");
+    if (!inputFile.is_open()) {
+      logger::fatal("Failed to open file!");
+      return -1;
+    }
+
+    // Read the contents and set the logs as the specified file
+    logger::readLog(inputFile);
 
     return 0;
 }
