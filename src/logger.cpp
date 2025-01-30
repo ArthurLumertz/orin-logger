@@ -15,7 +15,7 @@
 #define RED_COLOR		"\033[91m"
 #define DARK_RED_COLOR	"\033[38;5;1m"
 
-#define MAX_BUFFER_SIZE	1024
+#define MAX_BUFFER_SIZE 1024
 
 namespace logger {
 
@@ -37,7 +37,7 @@ namespace logger {
 	static std::string getCurrentTime() {
 		auto now = std::chrono::system_clock::now();
 		auto time = std::chrono::system_clock::to_time_t(now);
-		char buffer[100];
+		char buffer[22];
 
 		std::tm tmPtr;
 		#if defined(_MSC_VER)
@@ -72,6 +72,7 @@ namespace logger {
 			case INFO: logLevel = "INFO"; break;
 			case DEBUG: logLevel = "DEBUG"; break;
 			case WARNING: logLevel = "WARNING"; break;
+            case ERROR: logLevel = "ERROR"; break;
 			case FATAL: logLevel = "FATAL"; break;
 			}
 
