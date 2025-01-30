@@ -56,7 +56,7 @@ int main() {
         FATAL,
         INFO
        )
-    /*
+    */
     logger::setLogLevel(logger::WARNING);
 
     // Makes the logger use the primary thread (default=true)
