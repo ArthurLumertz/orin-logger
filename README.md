@@ -48,7 +48,7 @@ In your source files, include the logger header file:
 
 int main() {
     /* Sets the log level, meaning anything below WARNING is not printed.
-       The full list (in order):
+       The full list (in order=low->high):
        (
         DEBUG,
         WARNING,
@@ -64,7 +64,7 @@ int main() {
     logger::usePrimaryThread(true);
 
     // Log messages with different severity levels
-    logger::debug("This is a debug message!");
+    logger::debug("This is a debug message!"); // Won't print because log level is warning
     logger::info("This is a info message!");
     logger::warn("This is a warning message!");
     logger::error("This is a warning message!");
