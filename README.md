@@ -19,7 +19,7 @@ its header-only library, meaning you only have to move the `orinlogger.hpp` file
 #define ORIN_TIME_IMPLEMENTATION
 
 // include the library
-#include "src/orinlogger.hpp"
+#include "orinlogger.hpp"
 
 int main() {
     // create the logger with the log level set to all
