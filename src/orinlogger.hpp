@@ -110,12 +110,6 @@ namespace orin {
 
     };
 
-    class LoggerIO {
-    public:
-        void writeLog(logger &logger, std::ostream &os);
-        void readLog(std::istream &is);
-    };
-
 
 }
 
