@@ -7,7 +7,7 @@ the orin logger is a lightweight and fast logger inspired by log4j made for perf
 **68.75%** performance boost compared to `printf()`
 
 # How to use
-its header-only library, meaning you only have to move the `orinlogger.hpp` file into the source of your C++ project
+it's header-only library, meaning you only have to move the `orinlogger.hpp` file into the source of your C++ project
 
 ## Code Example
 ```c++
