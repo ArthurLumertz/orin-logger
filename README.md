@@ -3,6 +3,7 @@ the orin logger is a lightweight and fast logger inspired by log4j made for perf
 
 # Performance
 has a 77.27% performance boost compared to `std::cout` and `std::endl`
+
 has a 68.75% performance boost compared to `printf()`
 
 # How to use
